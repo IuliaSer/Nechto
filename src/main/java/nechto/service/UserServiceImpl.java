@@ -17,7 +17,9 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+
     private final BCryptPasswordEncoder passwordEncoder;
+
     private final UserMapper userMapper;
 
     @Override
