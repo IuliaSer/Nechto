@@ -15,7 +15,7 @@ public class Nechto implements StatusInterface {
     @Override
     public float count(List<Status> statuses, List<Scores> scoresList) {
         float scores = 0;
-        if(statuses.contains(WON)) {
+        if (statuses.contains(WON)) {
             scores+=2;
         } else {
             scores-=1;
@@ -25,6 +25,6 @@ public class Nechto implements StatusInterface {
                 }
             }
         }
-        return scores;
+        return scores > 2 ? 2 : scores;
     }
 }

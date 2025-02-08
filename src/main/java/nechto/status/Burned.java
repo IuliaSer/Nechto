@@ -5,7 +5,7 @@ import nechto.enums.Status;
 
 import java.util.List;
 
-public class Burned implements StatusInterface {
+public class  Burned implements StatusInterface {
 
     @Override
     public float count(List<Status> statuses, List<Scores> scoresList) {

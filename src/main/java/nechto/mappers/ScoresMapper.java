@@ -1,14 +1,14 @@
 package nechto.mappers;
 
-import nechto.dto.ScoresDto;
+import nechto.dto.ResponseScoresDto;
 import nechto.entity.Scores;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ScoresMapper {
 
-    ScoresDto convertToScoresDto(Scores scores);
+    ResponseScoresDto convertToScoresDto(Scores scores);
 
-    Scores convertToScores(ScoresDto scores);
+    Scores convertToScores(ResponseScoresDto scores);
 
 }

@@ -1,17 +1,15 @@
 package nechto.dto;
 
 import lombok.Data;
-import nechto.entity.Game;
-import nechto.entity.User;
 import nechto.enums.Status;
 
 import java.util.List;
 
 @Data
-public class ScoresDto {
+public class ResponseScoresDto {
     private Integer id;
-    private User user;
-    private Game game;
+    private UserDto user;
+    private ResponseGameDto game;
     private float scores;
     private List<Status> statuses;
 }

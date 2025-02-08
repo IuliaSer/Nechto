@@ -1,11 +1,12 @@
 package nechto.service;
 
-import nechto.dto.GameDto;
+import nechto.dto.ResponseGameDto;
+import nechto.dto.RequestGameDto;
 
 public interface GameService {
-    GameDto save(GameDto game);
+    ResponseGameDto save(RequestGameDto game);
 
-    GameDto addUser(Integer gameId, Integer userId);
+    ResponseGameDto addUser(Integer gameId, Integer userId);
 
-    void deleteUserFromGame(Integer gameId, Integer userId);
+    void deleteUserFromGame(Integer gameId, Integer userId); 
 }

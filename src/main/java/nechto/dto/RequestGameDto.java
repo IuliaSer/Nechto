@@ -6,10 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class GameDto {
+public class RequestGameDto {
     private Integer id;
 
     private Date date;
 
-    private List<UserDto> users;
+    private List<Integer> userIds;
 }

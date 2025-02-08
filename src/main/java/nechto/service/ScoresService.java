@@ -1,12 +1,10 @@
 package nechto.service;
 
-import nechto.dto.GameDto;
-import nechto.dto.ScoresDto;
-import nechto.entity.Game;
-import nechto.entity.Scores;
+import nechto.dto.ResponseScoresDto;
+import nechto.dto.RequestScoresDto;
 
 public interface ScoresService {
-    ScoresDto saveScores(ScoresDto scores);
+    ResponseScoresDto saveScores(RequestScoresDto scores);
 
     void countForAll(Integer gameId);
 }

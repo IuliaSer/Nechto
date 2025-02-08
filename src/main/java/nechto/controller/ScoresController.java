@@ -1,7 +1,8 @@
 package nechto.controller;
 
 import lombok.RequiredArgsConstructor;
-import nechto.dto.ScoresDto;
+import nechto.dto.ResponseScoresDto;
+import nechto.dto.RequestScoresDto;
 import nechto.service.ScoresService;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ public class ScoresController {
     private final ScoresService scoresService;
 
     @PostMapping("/")
-    ScoresDto saveScores(@RequestBody ScoresDto scores) {
+    ResponseScoresDto saveScores(@RequestBody RequestScoresDto scores) {
         return scoresService.saveScores(scores);
     }
 

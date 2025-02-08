@@ -1,13 +1,13 @@
 package nechto.mappers;
 
-import nechto.dto.GameDto;
+import nechto.dto.ResponseGameDto;
 import nechto.entity.Game;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface GameMapper {
-    GameDto convertToGameDto(Game game);
+    ResponseGameDto convertToGameDto(Game game);
 
-    Game convertToGame(GameDto Game);
+    Game convertToGame(ResponseGameDto Game);
 
 }
