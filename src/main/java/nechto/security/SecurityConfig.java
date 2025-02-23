@@ -3,12 +3,15 @@ package nechto.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.PUT;
 
 @Configuration
 @EnableMethodSecurity
@@ -26,11 +29,11 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().and()
                 .authorizeHttpRequests((authorize) -> authorize
-                        .antMatchers("/*/**").hasRole("OWNER")
-                        .antMatchers("/scores/**", "/game/**").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.PUT,"/user/**").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.POST,"/user/**").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET).permitAll()
+                        .antMatchers(GET).permitAll()
+                        .antMatchers("/scores/**", "/game/**").hasAnyRole("ADMIN", "OWNER")
+                        .antMatchers(PUT,"/user/**").hasAnyRole("ADMIN", "OWNER")
+                        .antMatchers(POST,"/user/**").hasAnyRole("ADMIN", "OWNER")
+                        .antMatchers("/**").hasRole("OWNER")
                         .anyRequest()
                         .authenticated())
                         .httpBasic(Customizer.withDefaults());
