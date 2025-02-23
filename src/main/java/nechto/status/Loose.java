@@ -6,18 +6,18 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static nechto.enums.Status.USEFULL;
+import static nechto.enums.Status.LOOSE;
 
 @Component
-public class Usefull implements StatusInterface {
+public class Loose implements StatusInterface {
 
     @Override
     public float count(List<Status> statuses, List<Scores> scoresList) {
-        return 0.2f;
+        return 0;
     }
 
     @Override
     public Status getStatus() {
-        return USEFULL;
+        return LOOSE;
     }
 }

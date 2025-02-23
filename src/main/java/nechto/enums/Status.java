@@ -18,10 +18,5 @@ public enum Status {
         BURNED,
         PENALTY;
 
-        private String name;
-
-        Status(String name) {
-                this.name = name;
-        }
 }
 

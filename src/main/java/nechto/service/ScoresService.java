@@ -1,10 +1,12 @@
 package nechto.service;
 
-import nechto.dto.ResponseScoresDto;
-import nechto.dto.RequestScoresDto;
+import nechto.dto.response.ResponseScoresDto;
+import nechto.dto.request.RequestScoresDto;
+
+import java.util.List;
 
 public interface ScoresService {
-    ResponseScoresDto saveScores(RequestScoresDto scores);
+    List<ResponseScoresDto> countForAll(Long gameId);
 
-    void countForAll(Integer gameId);
+    ResponseScoresDto updateScores(RequestScoresDto scores);
 }

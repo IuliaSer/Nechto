@@ -1,4 +1,4 @@
-package nechto.dto;
+package nechto.dto.request;
 
 import lombok.Data;
 import nechto.enums.Role;
@@ -7,9 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-public class UserDto {
-    private Integer id;
-
+public class RequestUserDto {
     @Size(min = 2, max = 20, message = "Name should have expected size")
     private String name;
 
@@ -18,7 +16,7 @@ public class UserDto {
     private String username;
 
     @NotNull(message = "Password should not be null")
-    @Size(min = 2, max = 20, message = "Title should have expected size")
+    @Size(min = 2, max = 20, message = "Password should have expected size")
     private String password;
 
     private Role role;

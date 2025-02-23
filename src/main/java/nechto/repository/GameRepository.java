@@ -1,8 +1,13 @@
 package nechto.repository;
 
 import nechto.entity.Game;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GameRepository extends JpaRepository<Game, Integer> {
+import java.util.List;
 
+public interface GameRepository extends JpaRepository<Game, Long> {
+
+    @EntityGraph(value = "game_entity_graph")
+    List<Game> findAll();
 }

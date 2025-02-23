@@ -1,16 +1,23 @@
 package nechto.service;
 
-import nechto.dto.UserDto;
-import nechto.entity.User;
+import nechto.dto.request.FullUserDto;
+import nechto.dto.request.RequestUserDto;
+import nechto.dto.response.ResponseUserDto;
 
 import java.util.List;
 
 public interface UserService {
-    void saveUser(UserDto user);
+    void saveUser(RequestUserDto userDto);
 
-    User findByLogin(String login);
+    ResponseUserDto findByUsername(String login);
 
-    List<User> findAll();
+    List<ResponseUserDto> findAll();
 
-    void deleteUser(Integer userId);
+    List<ResponseUserDto> findUsersOrderedByGamesAmount();
+
+    void deleteUser(Long userId);
+
+    void makeAdmin(Long userId);
+
+    ResponseUserDto updateUser(FullUserDto user);
 }

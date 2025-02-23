@@ -1,8 +1,8 @@
 package nechto.service;
 
 import lombok.RequiredArgsConstructor;
-import nechto.dto.ResponseGameDto;
-import nechto.dto.RequestGameDto;
+import nechto.dto.request.RequestGameDto;
+import nechto.dto.response.ResponseGameDto;
 import nechto.entity.Game;
 import nechto.entity.User;
 import nechto.mappers.GameMapper;
@@ -28,32 +28,47 @@ public class GameServiceImpl implements GameService {
     @Override
     public ResponseGameDto save(RequestGameDto gameDto) {
         List<User> users = new ArrayList<>();
-        for (Integer userId: gameDto.getUserIds()) {
+
+        for (Long userId: gameDto.getUserIds()) {
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new EntityNotFoundException(String.format("User with id %s not found", userId)));
             users.add(user);
         }
-        Game game = new Game(gameDto.getId(), gameDto.getDate(), users);
-        return gameMapper.convertToGameDto(gameRepository.save(game));
+        Game game = Game.builder()
+                .date(gameDto.getDate())
+                .users(users)
+                .build();
+        Game gameSaved = gameRepository.save(game);
+        return gameMapper.convertToResponseGameDto(gameSaved);
     }
 
     @Override
-    public ResponseGameDto addUser(Integer gameId, Integer userId) {
+    public ResponseGameDto addUser(Long gameId, Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User with id %s not found", userId)));
         Game game = gameRepository.findById(gameId)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Game with id %s not found", gameId)));
         game.getUsers().add(user);
-        return gameMapper.convertToGameDto(gameRepository.save(game));
+        return gameMapper.convertToResponseGameDto(gameRepository.save(game));
     }
 
     @Override
-    public void deleteUserFromGame(Integer gameId, Integer userId) {
+    public void deleteUserFromGame(Long gameId, Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User with id %s not found", userId)));
         Game game = gameRepository.findById(gameId)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Game with id %s not found", gameId)));
         game.getUsers().remove(user);
         gameRepository.save(game);
+    }
+
+    @Override
+    public List<ResponseGameDto> findAll() {
+        return gameMapper.convertToListResponseGameDto(gameRepository.findAll());
+    }
+
+    @Override
+    public void deleteGame(Long gameId) {
+        gameRepository.deleteById(gameId);
     }
 }
