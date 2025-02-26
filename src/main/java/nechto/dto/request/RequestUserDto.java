@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 
 @Data
 public class RequestUserDto {
+    @NotNull(message = "Name should not be null")
     @Size(min = 2, max = 20, message = "Name should have expected size")
     private String name;
 

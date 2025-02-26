@@ -41,8 +41,8 @@ public class UserController {
     }
 
     @PostMapping
-    void saveUser(@Valid @RequestBody RequestUserDto user) {
-        userService.saveUser(user);
+    ResponseUserDto saveUser(@Valid @RequestBody RequestUserDto user) {
+        return userService.saveUser(user);
     }
 
     @PatchMapping("/admin/{user_id}")

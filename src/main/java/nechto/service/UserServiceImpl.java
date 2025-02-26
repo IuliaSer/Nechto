@@ -28,13 +28,13 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
-    public void saveUser(RequestUserDto userDto) {
+    public ResponseUserDto saveUser(RequestUserDto userDto) {
         if (userRepository.findByUsername(userDto.getUsername()) != null) {
             throw new UserAlreadyExistsException("A user with this login already exists");
         }
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userDto.setRole(userDto.getRole());
-        userRepository.save(userMapper.convertToUser(userDto));
+        return userMapper.convertToResponseUserDto(userRepository.save(userMapper.convertToUser(userDto)));
     }
 
     @Override

@@ -7,7 +7,7 @@ import nechto.dto.response.ResponseUserDto;
 import java.util.List;
 
 public interface UserService {
-    void saveUser(RequestUserDto userDto);
+    ResponseUserDto saveUser(RequestUserDto userDto);
 
     ResponseUserDto findByUsername(String login);
 
