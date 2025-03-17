@@ -7,10 +7,10 @@ CREATE TABLE if not exists GAMES (
 
 CREATE TABLE if not exists USERS (
                       id BIGSERIAL NOT NULL,
-                      name varchar(255) NOT NULL,
+                      name varchar(255),
                       username varchar(255) NOT NULL,
                       password varchar(255) NOT NULL,
-                      role varchar(255) NOT NULL,
+                      authority varchar(255) NOT NULL,
                       PRIMARY KEY (id),
                       UNIQUE(name, username)
 );

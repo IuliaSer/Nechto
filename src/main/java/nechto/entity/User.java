@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import nechto.enums.Role;
+import nechto.enums.Authority;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,5 +35,5 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Authority authority;
 }

@@ -1,7 +1,6 @@
 package nechto.status;
 
 import nechto.entity.Scores;
-import nechto.enums.Status;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,10 +10,10 @@ import static nechto.enums.Status.NECHTO;
 import static nechto.enums.Status.WON;
 
 @Component
-public class Nechto implements StatusInterface {
+public class Nechto implements Status {
 
     @Override
-    public float count(List<Status> statuses, List<Scores> scoresList) {
+    public float count(List<nechto.enums.Status> statuses, List<Scores> scoresList) {
         float scores = 0;
 
         if (statuses.contains(WON)) {
@@ -31,7 +30,7 @@ public class Nechto implements StatusInterface {
     }
 
     @Override
-    public Status getStatus() {
+    public nechto.enums.Status getStatus() {
         return NECHTO;
     }
 }

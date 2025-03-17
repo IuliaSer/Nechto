@@ -27,7 +27,7 @@ public class ScoresServiceImpl implements ScoresService {
     private final StatusProcessorImpl statusProcessorImpl;
 
     @Override
-    public ResponseScoresDto updateScores(RequestScoresDto scoresDto) {
+    public ResponseScoresDto update(RequestScoresDto scoresDto) {
         Long userId = scoresDto.getUserId();
         Long gameId = scoresDto.getGameId();
         Scores scores = scoresRepository.findByUserIdAndGameId(userId, gameId)
@@ -38,7 +38,7 @@ public class ScoresServiceImpl implements ScoresService {
     }
 
     @Override
-    public List<ResponseScoresDto> countForAll(Long gameId) {
+    public List<ResponseScoresDto> countAndSaveAllScoresInTheGame(Long gameId) {
         List<Scores> scoresList = scoresRepository.findAllByGameId(gameId);
 
         for (Scores scores : scoresList) {

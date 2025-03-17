@@ -22,11 +22,11 @@ public class ScoresController {
 
     @PatchMapping
     ResponseScoresDto updateScores(@Valid @RequestBody RequestScoresDto scores) {
-        return scoresService.updateScores(scores);
+        return scoresService.update(scores);
     }
 
     @PatchMapping("/{game_id}")
     List<ResponseScoresDto> countForAll(@PathVariable(name = "game_id") Long gameId) {
-        return scoresService.countForAll(gameId);
+        return scoresService.countAndSaveAllScoresInTheGame(gameId);
     }
 }

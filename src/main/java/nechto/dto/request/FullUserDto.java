@@ -1,7 +1,7 @@
 package nechto.dto.request;
 
 import lombok.Data;
-import nechto.enums.Role;
+import nechto.enums.Authority;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,6 +22,6 @@ public class FullUserDto {
     @Size(min = 2, max = 20, message = "Password should have expected size")
     private String password;
 
-    private Role role;
+    private Authority authority;
 }
 

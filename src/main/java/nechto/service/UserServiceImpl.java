@@ -15,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 
-import static nechto.enums.Role.ROLE_ADMIN;
+import static nechto.enums.Authority.ROLE_ADMIN;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExistsException("A user with this login already exists");
         }
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        userDto.setRole(userDto.getRole());
+        userDto.setAuthority(userDto.getAuthority());
         return userMapper.convertToResponseUserDto(userRepository.save(userMapper.convertToUser(userDto)));
     }
 
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     public void makeAdmin(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User with id %s not found", userId)));
-        user.setRole(ROLE_ADMIN);
+        user.setAuthority(ROLE_ADMIN);
         userRepository.save(user);
     }
 
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
                         .id(userDto.getId())
                         .name(userDto.getName())
                         .username(userDto.getUsername())
-                        .role(userDto.getRole())
+                        .authority(userDto.getAuthority())
                         .build();
         return userMapper.convertToResponseUserDto(userRepository.save(user));
     }

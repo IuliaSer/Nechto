@@ -10,7 +10,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
     @Query(value = """
-        SELECT u.id, u.name, u.username, u.password, u.role
+        SELECT u.id, u.name, u.username, u.password, u.authority
         FROM USERS u
         INNER JOIN SCORES s ON u.id = s.user_id
         GROUP BY u.id

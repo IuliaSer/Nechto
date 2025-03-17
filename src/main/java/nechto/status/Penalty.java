@@ -1,7 +1,6 @@
 package nechto.status;
 
 import nechto.entity.Scores;
-import nechto.enums.Status;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,15 +8,15 @@ import java.util.List;
 import static nechto.enums.Status.PENALTY;
 
 @Component
-public class Penalty implements StatusInterface {
+public class Penalty implements Status {
 
     @Override
-    public float count(List<Status> statuses, List<Scores> scoresList) {
+    public float count(List<nechto.enums.Status> statuses, List<Scores> scoresList) {
         return -2;
     }
 
     @Override
-    public Status getStatus() {
+    public nechto.enums.Status getStatus() {
         return PENALTY;
     }
 }

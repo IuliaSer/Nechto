@@ -6,7 +6,7 @@ import nechto.dto.request.RequestScoresDto;
 import java.util.List;
 
 public interface ScoresService {
-    List<ResponseScoresDto> countForAll(Long gameId);
+    List<ResponseScoresDto> countAndSaveAllScoresInTheGame(Long gameId);
 
-    ResponseScoresDto updateScores(RequestScoresDto scores);
+    ResponseScoresDto update(RequestScoresDto scores);
 }
