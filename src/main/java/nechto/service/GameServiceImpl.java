@@ -8,6 +8,7 @@ import nechto.entity.User;
 import nechto.mappers.GameMapper;
 import nechto.repository.GameRepository;
 import nechto.repository.UserRepository;
+import org.springframework.security.acls.domain.BasePermission;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -25,6 +26,8 @@ public class GameServiceImpl implements GameService {
 
     private final GameMapper gameMapper;
 
+    private final AclServiceWrapperService aclServiceWrapperService;
+
     @Override
     public ResponseGameDto save(RequestGameDto gameDto) {
         List<User> users = new ArrayList<>();
@@ -39,6 +42,9 @@ public class GameServiceImpl implements GameService {
                 .users(users)
                 .build();
         Game gameSaved = gameRepository.save(game);
+
+//        aclServiceWrapperService.createPermission(gameMapper.convertToAclGameDto(gameSaved), BasePermission.WRITE);
+
         return gameMapper.convertToResponseGameDto(gameSaved);
     }
 

@@ -5,6 +5,7 @@ import nechto.dto.request.RequestGameDto;
 import nechto.dto.response.ResponseGameDto;
 import nechto.service.GameService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -35,12 +36,15 @@ public class GameController {
         return gameService.save(game);
     }
 
+//    @PreAuthorize("hasRole('OWNER') || hasPermission(#gameId, 'nechto.dto.AclGameDto', 'WRITE')")
     @PatchMapping("/{game_id}/user/{user_id}")
     ResponseGameDto addUserToGame(@PathVariable(name = "game_id") Long gameId,
                                   @PathVariable(name = "user_id") Long userId) {
         return gameService.addUser(gameId, userId);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @PreAuthorize("hasRole('OWNER') || hasPermission(#gameId, 'nechto.dto.AclGameDto', 'WRITE')")
     @DeleteMapping("/{game_id}/user/{user_id}")
     void deleteUserFromGame(@PathVariable(name = "game_id") Long gameId,
                             @PathVariable(name = "user_id") Long userId) {

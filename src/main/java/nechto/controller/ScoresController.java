@@ -26,7 +26,7 @@ public class ScoresController {
     }
 
     @PatchMapping("/{game_id}")
-    List<ResponseScoresDto> countForAll(@PathVariable(name = "game_id") Long gameId) {
+    List<ResponseScoresDto> countAndSaveAllScoresInTheGame(@PathVariable(name = "game_id") Long gameId) {
         return scoresService.countAndSaveAllScoresInTheGame(gameId);
     }
 }

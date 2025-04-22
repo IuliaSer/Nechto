@@ -1,5 +1,6 @@
 package nechto.mappers;
 
+import nechto.dto.AclGameDto;
 import nechto.dto.response.ResponseGameDto;
 import nechto.entity.Game;
 import org.mapstruct.Mapper;
@@ -13,4 +14,7 @@ public interface GameMapper {
     Game convertToGame(ResponseGameDto game);
 
     List<ResponseGameDto> convertToListResponseGameDto(List<Game> games);
+
+    AclGameDto convertToAclGameDto(Game game);
+
 }
