@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/game")
+@RequestMapping("/games")
 @RequiredArgsConstructor
 public class GameController {
     private final GameService gameService;
